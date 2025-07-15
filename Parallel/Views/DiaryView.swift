@@ -360,8 +360,8 @@ struct NewDiaryView: View {
     }
     
     private func saveDiary() {
-        let currentUserID = UUID() // 暫時使用隨機UUID
-        let partnerID = UUID() // 暫時使用隨機UUID
+        let currentUserID = "current-user"
+        let partnerID = "partner-user"
         
         let diary = DiaryEntry(
             authorID: currentUserID,

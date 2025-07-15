@@ -38,8 +38,8 @@ class AppStateManager: ObservableObject {
         partnerUser.isAuthenticated = true
         self.partnerUser = partnerUser
         
-        // 設定互相為伴侶
-        demoUser.partnerID = partnerUser.id
-        partnerUser.partnerID = demoUser.id
+        // 設定互相為伴侶（使用簡單的字符串ID）
+        demoUser.partnerID = "partner-user"
+        partnerUser.partnerID = "current-user"
     }
 }

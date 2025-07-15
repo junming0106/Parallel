@@ -18,9 +18,8 @@ enum LocationSharingDuration: String, CaseIterable, Codable {
 
 @Model
 final class LocationShare {
-    var id: UUID
-    var userID: UUID
-    var partnerID: UUID
+    var userID: String
+    var partnerID: String
     var latitude: Double
     var longitude: Double
     var accuracy: Double
@@ -30,8 +29,7 @@ final class LocationShare {
     var expiresAt: Date?
     var isActive: Bool
     
-    init(userID: UUID, partnerID: UUID, latitude: Double, longitude: Double, accuracy: Double, batteryLevel: Double? = nil, sharingDuration: LocationSharingDuration = .off) {
-        self.id = UUID()
+    init(userID: String, partnerID: String, latitude: Double, longitude: Double, accuracy: Double, batteryLevel: Double? = nil, sharingDuration: LocationSharingDuration = .off) {
         self.userID = userID
         self.partnerID = partnerID
         self.latitude = latitude

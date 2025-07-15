@@ -22,31 +22,27 @@ class DemoDataService {
             return // 已有數據，不重複創建
         }
         
-        // 創建用戶（使用固定的 UUID）
-        let currentUserID = UUID(uuidString: "11111111-1111-1111-1111-111111111111") ?? UUID()
-        let partnerUserID = UUID(uuidString: "22222222-2222-2222-2222-222222222222") ?? UUID()
+        // 創建用戶（使用固定的字符串ID）
+        let currentUserID = "current-user"
+        let partnerUserID = "partner-user"
         
         let currentUser = User(name: "浚銘", email: "junming@parallel.app")
         let partnerUser = User(name: "親愛的", email: "partner@parallel.app")
         
-        // 設定固定的 ID
-        currentUser.id = currentUserID
-        partnerUser.id = partnerUserID
-        
         currentUser.isAuthenticated = true
         partnerUser.isAuthenticated = true
-        currentUser.partnerID = partnerUser.id
-        partnerUser.partnerID = currentUser.id
+        currentUser.partnerID = partnerUserID
+        partnerUser.partnerID = currentUserID
         
         context.insert(currentUser)
         context.insert(partnerUser)
         
         // 創建示例訊息
         let messages = [
-            Message(senderID: currentUser.id, recipientID: partnerUser.id, content: "你好！這是心連心的第一則訊息 ❤️", type: .text),
-            Message(senderID: partnerUser.id, recipientID: currentUser.id, content: "哇！這個 App 看起來很棒！", type: .text),
-            Message(senderID: currentUser.id, recipientID: partnerUser.id, content: "想你 ❤️", type: .missYou),
-            Message(senderID: partnerUser.id, recipientID: currentUser.id, content: "我也想你 💕", type: .text)
+            Message(senderID: currentUserID, recipientID: partnerUserID, content: "你好！這是心連心的第一則訊息 ❤️", type: .text),
+            Message(senderID: partnerUserID, recipientID: currentUserID, content: "哇！這個 App 看起來很棒！", type: .text),
+            Message(senderID: currentUserID, recipientID: partnerUserID, content: "想你 ❤️", type: .missYou),
+            Message(senderID: partnerUserID, recipientID: currentUserID, content: "我也想你 💕", type: .text)
         ]
         
         for message in messages {
@@ -56,8 +52,8 @@ class DemoDataService {
         
         // 創建示例日記
         let diary1 = DiaryEntry(
-            authorID: currentUser.id,
-            recipientID: partnerUser.id,
+            authorID: currentUserID,
+            recipientID: partnerUserID,
             title: "第一次約會",
             content: "今天我們一起去了電影院，看了一部很棒的電影。你的笑容讓我覺得整個世界都亮了起來。",
             weather: "☀️ 晴天",
@@ -68,8 +64,8 @@ class DemoDataService {
         diary1.readAt = Date().addingTimeInterval(-86400 + 3600)
         
         let diary2 = DiaryEntry(
-            authorID: partnerUser.id,
-            recipientID: currentUser.id,
+            authorID: partnerUserID,
+            recipientID: currentUserID,
             title: "溫馨的晚餐",
             content: "謝謝你今天為我準備的驚喜晚餐，每一道菜都充滿了愛意。和你在一起的每一刻都是最珍貴的回憶。",
             weather: "🌙 晚上",
@@ -89,8 +85,8 @@ class DemoDataService {
                 type: .anniversary,
                 startDate: Calendar.current.date(byAdding: .day, value: 30, to: Date()) ?? Date(),
                 isAllDay: true,
-                createdBy: currentUser.id,
-                participantIDs: [currentUser.id, partnerUser.id],
+                createdBy: currentUserID,
+                participantIDs: [currentUserID, partnerUserID],
                 color: "pink"
             ),
             CalendarEvent(
@@ -99,8 +95,8 @@ class DemoDataService {
                 type: .date,
                 startDate: Calendar.current.date(byAdding: .day, value: 7, to: Date()) ?? Date(),
                 endDate: Calendar.current.date(byAdding: .day, value: 7, to: Date())?.addingTimeInterval(7200),
-                createdBy: currentUser.id,
-                participantIDs: [currentUser.id, partnerUser.id],
+                createdBy: currentUserID,
+                participantIDs: [currentUserID, partnerUserID],
                 color: "red",
                 location: "市中心浪漫餐廳"
             ),
@@ -111,8 +107,8 @@ class DemoDataService {
                 startDate: Calendar.current.date(byAdding: .day, value: 14, to: Date()) ?? Date(),
                 endDate: Calendar.current.date(byAdding: .day, value: 16, to: Date()) ?? Date(),
                 isAllDay: true,
-                createdBy: partnerUser.id,
-                participantIDs: [currentUser.id, partnerUser.id],
+                createdBy: partnerUserID,
+                participantIDs: [currentUserID, partnerUserID],
                 color: "blue",
                 location: "台南"
             )
@@ -124,8 +120,8 @@ class DemoDataService {
         
         // 創建示例位置分享
         let locationShare = LocationShare(
-            userID: currentUser.id,
-            partnerID: partnerUser.id,
+            userID: currentUserID,
+            partnerID: partnerUserID,
             latitude: 25.0330,
             longitude: 121.5654,
             accuracy: 10.0,

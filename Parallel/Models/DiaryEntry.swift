@@ -17,9 +17,8 @@ enum DiaryStatus: String, CaseIterable, Codable {
 
 @Model
 final class DiaryEntry {
-    var id: UUID
-    var authorID: UUID
-    var recipientID: UUID
+    var authorID: String
+    var recipientID: String
     var title: String
     var content: String
     var status: DiaryStatus
@@ -31,8 +30,7 @@ final class DiaryEntry {
     var coverStyle: String
     var images: [Data]
     
-    init(authorID: UUID, recipientID: UUID, title: String, content: String, weather: String? = nil, mood: String? = nil, coverStyle: String = "default") {
-        self.id = UUID()
+    init(authorID: String, recipientID: String, title: String, content: String, weather: String? = nil, mood: String? = nil, coverStyle: String = "default") {
         self.authorID = authorID
         self.recipientID = recipientID
         self.title = title

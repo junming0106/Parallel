@@ -10,16 +10,14 @@ import SwiftData
 
 @Model
 final class User {
-    var id: UUID
     var name: String
     var email: String
     var profileImageData: Data?
     var createdAt: Date
-    var partnerID: UUID?
+    var partnerID: String?
     var isAuthenticated: Bool
     
     init(name: String, email: String, profileImageData: Data? = nil) {
-        self.id = UUID()
         self.name = name
         self.email = email
         self.profileImageData = profileImageData

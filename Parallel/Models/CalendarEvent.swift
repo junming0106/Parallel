@@ -18,7 +18,6 @@ enum EventType: String, CaseIterable, Codable {
 
 @Model
 final class CalendarEvent {
-    var id: UUID
     var title: String
     var description: String
     var type: EventType
@@ -27,14 +26,13 @@ final class CalendarEvent {
     var isAllDay: Bool
     var isRecurring: Bool
     var reminderTime: Date?
-    var createdBy: UUID
-    var participantIDs: [UUID]
+    var createdBy: String
+    var participantIDs: [String]
     var color: String
     var location: String?
     var createdAt: Date
     
-    init(title: String, description: String = "", type: EventType, startDate: Date, endDate: Date? = nil, isAllDay: Bool = false, isRecurring: Bool = false, createdBy: UUID, participantIDs: [UUID] = [], color: String = "blue", location: String? = nil) {
-        self.id = UUID()
+    init(title: String, description: String = "", type: EventType, startDate: Date, endDate: Date? = nil, isAllDay: Bool = false, isRecurring: Bool = false, createdBy: String, participantIDs: [String] = [], color: String = "blue", location: String? = nil) {
         self.title = title
         self.description = description
         self.type = type

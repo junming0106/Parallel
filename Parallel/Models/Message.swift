@@ -26,9 +26,8 @@ enum MessageStatus: String, CaseIterable, Codable {
 
 @Model
 final class Message {
-    var id: UUID
-    var senderID: UUID
-    var recipientID: UUID
+    var senderID: String
+    var recipientID: String
     var content: String
     var type: MessageType
     var status: MessageStatus
@@ -37,8 +36,7 @@ final class Message {
     var mediaURL: String?
     var isEncrypted: Bool
     
-    init(senderID: UUID, recipientID: UUID, content: String, type: MessageType = .text, mediaData: Data? = nil) {
-        self.id = UUID()
+    init(senderID: String, recipientID: String, content: String, type: MessageType = .text, mediaData: Data? = nil) {
         self.senderID = senderID
         self.recipientID = recipientID
         self.content = content
