@@ -291,52 +291,10 @@ struct NewDiaryView: View {
                     }
                     
                     // 天氣選擇
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("天氣")
-                            .font(.headline)
-                        ScrollView(.horizontal, showsIndicators: false) {
-                            HStack {
-                                ForEach(weatherOptions, id: \.self) { option in
-                                    Button(action: { weather = option }) {
-                                        Text(option)
-                                            .font(.caption)
-                                            .padding(.horizontal, 12)
-                                            .padding(.vertical, 6)
-                                            .background(
-                                                RoundedRectangle(cornerRadius: 12)
-                                                    .fill(weather == option ? Color.blue : Color(.systemGray5))
-                                            )
-                                            .foregroundColor(weather == option ? .white : .primary)
-                                    }
-                                }
-                            }
-                            .padding(.horizontal)
-                        }
-                    }
+                    WeatherSelectionView(weather: $weather, options: weatherOptions)
                     
                     // 心情選擇
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("心情")
-                            .font(.headline)
-                        ScrollView(.horizontal, showsIndicators: false) {
-                            HStack {
-                                ForEach(moodOptions, id: \.self) { option in
-                                    Button(action: { mood = option }) {
-                                        Text(option)
-                                            .font(.caption)
-                                            .padding(.horizontal, 12)
-                                            .padding(.vertical, 6)
-                                            .background(
-                                                RoundedRectangle(cornerRadius: 12)
-                                                    .fill(mood == option ? Color.pink : Color(.systemGray5))
-                                            )
-                                            .foregroundColor(mood == option ? .white : .primary)
-                                    }
-                                }
-                            }
-                            .padding(.horizontal)
-                        }
-                    }
+                    MoodSelectionView(mood: $mood, options: moodOptions)
                 }
                 .padding()
             }
@@ -440,6 +398,68 @@ struct DiaryDetailView: View {
         formatter.dateStyle = .full
         formatter.timeStyle = .short
         return formatter.string(from: date)
+    }
+}
+
+// MARK: - 子視圖組件
+
+struct WeatherSelectionView: View {
+    @Binding var weather: String
+    let options: [String]
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text("天氣")
+                .font(.headline)
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack {
+                    ForEach(options, id: \.self) { option in
+                        Button(action: { weather = option }) {
+                            Text(option)
+                                .font(.caption)
+                                .padding(.horizontal, 12)
+                                .padding(.vertical, 6)
+                                .background(
+                                    RoundedRectangle(cornerRadius: 12)
+                                        .fill(weather == option ? Color.blue : Color(.systemGray5))
+                                )
+                                .foregroundColor(weather == option ? .white : .primary)
+                        }
+                    }
+                }
+                .padding(.horizontal)
+            }
+        }
+    }
+}
+
+struct MoodSelectionView: View {
+    @Binding var mood: String
+    let options: [String]
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text("心情")
+                .font(.headline)
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack {
+                    ForEach(options, id: \.self) { option in
+                        Button(action: { mood = option }) {
+                            Text(option)
+                                .font(.caption)
+                                .padding(.horizontal, 12)
+                                .padding(.vertical, 6)
+                                .background(
+                                    RoundedRectangle(cornerRadius: 12)
+                                        .fill(mood == option ? Color.pink : Color(.systemGray5))
+                                )
+                                .foregroundColor(mood == option ? .white : .primary)
+                        }
+                    }
+                }
+                .padding(.horizontal)
+            }
+        }
     }
 }
 

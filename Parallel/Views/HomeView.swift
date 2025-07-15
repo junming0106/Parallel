@@ -50,175 +50,22 @@ struct HomeView: View {
                     .padding(.horizontal)
                     
                     // 交往天數卡片
-                    VStack {
-                        HStack {
-                            VStack(alignment: .leading) {
-                                Text("我們在一起")
-                                    .font(.headline)
-                                    .foregroundColor(.secondary)
-                                
-                                Text("\(daysTogether) 天")
-                                    .font(.largeTitle)
-                                    .fontWeight(.bold)
-                                    .foregroundColor(.pink)
-                            }
-                            
-                            Spacer()
-                            
-                            Image(systemName: "heart.fill")
-                                .font(.system(size: 40))
-                                .foregroundColor(.pink)
-                        }
-                    }
-                    .padding()
-                    .background(
-                        RoundedRectangle(cornerRadius: 16)
-                            .fill(Color.pink.opacity(0.1))
-                    )
-                    .padding(.horizontal)
+                    RelationshipDaysCard(daysTogether: daysTogether)
+                        .padding(.horizontal)
                     
                     // 下一個紀念日倒數
                     if let anniversary = nextAnniversary {
-                        VStack {
-                            HStack {
-                                VStack(alignment: .leading) {
-                                    Text("下一個紀念日")
-                                        .font(.headline)
-                                        .foregroundColor(.secondary)
-                                    
-                                    Text(anniversary.title)
-                                        .font(.title2)
-                                        .fontWeight(.semibold)
-                                    
-                                    Text(daysUntil(anniversary.startDate))
-                                        .font(.title)
-                                        .fontWeight(.bold)
-                                        .foregroundColor(.orange)
-                                }
-                                
-                                Spacer()
-                                
-                                Image(systemName: "calendar.badge.exclamationmark")
-                                    .font(.system(size: 30))
-                                    .foregroundColor(.orange)
-                            }
-                        }
-                        .padding()
-                        .background(
-                            RoundedRectangle(cornerRadius: 16)
-                                .fill(Color.orange.opacity(0.1))
-                        )
-                        .padding(.horizontal)
+                        AnniversaryCountdownCard(anniversary: anniversary)
+                            .padding(.horizontal)
                     }
                     
                     // 快速操作按鈕
-                    VStack(spacing: 16) {
-                        Text("快速操作")
-                            .font(.headline)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        
-                        VStack(spacing: 12) {
-                            // 想你按鈕
-                            Button(action: sendMissYouMessage) {
-                                HStack {
-                                    Image(systemName: "heart.fill")
-                                        .font(.system(size: 20))
-                                    Text("想你")
-                                        .font(.headline)
-                                        .fontWeight(.medium)
-                                }
-                                .foregroundColor(.white)
-                                .frame(maxWidth: .infinity)
-                                .padding()
-                                .background(
-                                    RoundedRectangle(cornerRadius: 12)
-                                        .fill(Color.pink)
-                                )
-                            }
-                            
-                            HStack(spacing: 12) {
-                                // 寫日記按鈕
-                                Button(action: {}) {
-                                    HStack {
-                                        Image(systemName: "book.fill")
-                                            .font(.system(size: 18))
-                                        Text("寫日記")
-                                            .font(.subheadline)
-                                            .fontWeight(.medium)
-                                    }
-                                    .foregroundColor(.white)
-                                    .frame(maxWidth: .infinity)
-                                    .padding(.vertical, 12)
-                                    .background(
-                                        RoundedRectangle(cornerRadius: 10)
-                                            .fill(Color.blue)
-                                    )
-                                }
-                                
-                                // 添加活動按鈕
-                                Button(action: {}) {
-                                    HStack {
-                                        Image(systemName: "plus.circle.fill")
-                                            .font(.system(size: 18))
-                                        Text("添加活動")
-                                            .font(.subheadline)
-                                            .fontWeight(.medium)
-                                    }
-                                    .foregroundColor(.white)
-                                    .frame(maxWidth: .infinity)
-                                    .padding(.vertical, 12)
-                                    .background(
-                                        RoundedRectangle(cornerRadius: 10)
-                                            .fill(Color.green)
-                                    )
-                                }
-                            }
-                        }
-                    }
-                    .padding(.horizontal)
+                    QuickActionsSection(sendMissYouMessage: sendMissYouMessage)
+                        .padding(.horizontal)
                     
                     // 最近活動
-                    VStack(alignment: .leading, spacing: 12) {
-                        Text("即將到來")
-                            .font(.headline)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        
-                        ForEach(upcomingEvents.prefix(3), id: \.id) { event in
-                            HStack {
-                                VStack {
-                                    Text(dayOfMonth(event.startDate))
-                                        .font(.title2)
-                                        .fontWeight(.bold)
-                                    Text(monthAbbreviation(event.startDate))
-                                        .font(.caption)
-                                        .foregroundColor(.secondary)
-                                }
-                                .frame(width: 50)
-                                
-                                VStack(alignment: .leading, spacing: 4) {
-                                    Text(event.title)
-                                        .font(.headline)
-                                    
-                                    if !event.description.isEmpty {
-                                        Text(event.description)
-                                            .font(.caption)
-                                            .foregroundColor(.secondary)
-                                    }
-                                }
-                                
-                                Spacer()
-                                
-                                eventTypeIcon(event.type)
-                                    .foregroundColor(eventTypeColor(event.type))
-                            }
-                            .padding()
-                            .background(
-                                RoundedRectangle(cornerRadius: 12)
-                                    .fill(Color(.systemGray6))
-                            )
-                        }
-                    }
-                    .padding(.horizontal)
+                    UpcomingEventsSection(events: Array(upcomingEvents.prefix(3)))
+                        .padding(.horizontal)
                 }
                 .padding(.vertical)
             }
@@ -236,52 +83,6 @@ struct HomeView: View {
             .sorted { $0.startDate < $1.startDate }
     }
     
-    private func daysUntil(_ date: Date) -> String {
-        let days = Calendar.current.dateComponents([.day], from: Date(), to: date).day ?? 0
-        return "\(days) 天後"
-    }
-    
-    private func dayOfMonth(_ date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd"
-        return formatter.string(from: date)
-    }
-    
-    private func monthAbbreviation(_ date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MMM"
-        return formatter.string(from: date)
-    }
-    
-    private func eventTypeIcon(_ type: EventType) -> Image {
-        switch type {
-        case .anniversary:
-            return Image(systemName: "heart.fill")
-        case .date:
-            return Image(systemName: "fork.knife")
-        case .travel:
-            return Image(systemName: "airplane")
-        case .todo:
-            return Image(systemName: "checkmark.circle")
-        case .milestone:
-            return Image(systemName: "star.fill")
-        }
-    }
-    
-    private func eventTypeColor(_ type: EventType) -> Color {
-        switch type {
-        case .anniversary:
-            return .pink
-        case .date:
-            return .orange
-        case .travel:
-            return .blue
-        case .todo:
-            return .green
-        case .milestone:
-            return .purple
-        }
-    }
     
     private func sendMissYouMessage() {
         showingMissYouAnimation = true
@@ -334,6 +135,248 @@ struct MissYouAnimationView: View {
                     }
                 }
             }
+        }
+    }
+}
+
+// MARK: - 子視圖組件
+
+struct RelationshipDaysCard: View {
+    let daysTogether: Int
+    
+    var body: some View {
+        VStack {
+            HStack {
+                VStack(alignment: .leading) {
+                    Text("我們在一起")
+                        .font(.headline)
+                        .foregroundColor(.secondary)
+                    
+                    Text("\(daysTogether) 天")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                        .foregroundColor(.pink)
+                }
+                
+                Spacer()
+                
+                Image(systemName: "heart.fill")
+                    .font(.system(size: 40))
+                    .foregroundColor(.pink)
+            }
+        }
+        .padding()
+        .background(
+            RoundedRectangle(cornerRadius: 16)
+                .fill(Color.pink.opacity(0.1))
+        )
+    }
+}
+
+struct AnniversaryCountdownCard: View {
+    let anniversary: CalendarEvent
+    
+    var body: some View {
+        VStack {
+            HStack {
+                VStack(alignment: .leading) {
+                    Text("下一個紀念日")
+                        .font(.headline)
+                        .foregroundColor(.secondary)
+                    
+                    Text(anniversary.title)
+                        .font(.title2)
+                        .fontWeight(.semibold)
+                    
+                    Text(daysUntil(anniversary.startDate))
+                        .font(.title)
+                        .fontWeight(.bold)
+                        .foregroundColor(.orange)
+                }
+                
+                Spacer()
+                
+                Image(systemName: "calendar.badge.exclamationmark")
+                    .font(.system(size: 30))
+                    .foregroundColor(.orange)
+            }
+        }
+        .padding()
+        .background(
+            RoundedRectangle(cornerRadius: 16)
+                .fill(Color.orange.opacity(0.1))
+        )
+    }
+    
+    private func daysUntil(_ date: Date) -> String {
+        let days = Calendar.current.dateComponents([.day], from: Date(), to: date).day ?? 0
+        return "\(days) 天後"
+    }
+}
+
+struct QuickActionsSection: View {
+    let sendMissYouMessage: () -> Void
+    
+    var body: some View {
+        VStack(spacing: 16) {
+            Text("快速操作")
+                .font(.headline)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            
+            VStack(spacing: 12) {
+                // 想你按鈕
+                Button(action: sendMissYouMessage) {
+                    HStack {
+                        Image(systemName: "heart.fill")
+                            .font(.system(size: 20))
+                        Text("想你")
+                            .font(.headline)
+                            .fontWeight(.medium)
+                    }
+                    .foregroundColor(.white)
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .background(
+                        RoundedRectangle(cornerRadius: 12)
+                            .fill(Color.pink)
+                    )
+                }
+                
+                HStack(spacing: 12) {
+                    // 寫日記按鈕
+                    Button(action: {}) {
+                        HStack {
+                            Image(systemName: "book.fill")
+                                .font(.system(size: 18))
+                            Text("寫日記")
+                                .font(.subheadline)
+                                .fontWeight(.medium)
+                        }
+                        .foregroundColor(.white)
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 12)
+                        .background(
+                            RoundedRectangle(cornerRadius: 10)
+                                .fill(Color.blue)
+                        )
+                    }
+                    
+                    // 添加活動按鈕
+                    Button(action: {}) {
+                        HStack {
+                            Image(systemName: "plus.circle.fill")
+                                .font(.system(size: 18))
+                            Text("添加活動")
+                                .font(.subheadline)
+                                .fontWeight(.medium)
+                        }
+                        .foregroundColor(.white)
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 12)
+                        .background(
+                            RoundedRectangle(cornerRadius: 10)
+                                .fill(Color.green)
+                        )
+                    }
+                }
+            }
+        }
+    }
+}
+
+struct UpcomingEventsSection: View {
+    let events: [CalendarEvent]
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Text("即將到來")
+                .font(.headline)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            
+            ForEach(events, id: \.title) { event in
+                EventRowView(event: event)
+            }
+        }
+    }
+}
+
+struct EventRowView: View {
+    let event: CalendarEvent
+    
+    var body: some View {
+        HStack {
+            VStack {
+                Text(dayOfMonth(event.startDate))
+                    .font(.title2)
+                    .fontWeight(.bold)
+                Text(monthAbbreviation(event.startDate))
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+            }
+            .frame(width: 50)
+            
+            VStack(alignment: .leading, spacing: 4) {
+                Text(event.title)
+                    .font(.headline)
+                
+                if !event.eventDescription.isEmpty {
+                    Text(event.eventDescription)
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                }
+            }
+            
+            Spacer()
+            
+            eventTypeIcon(event.type)
+                .foregroundColor(eventTypeColor(event.type))
+        }
+        .padding()
+        .background(
+            RoundedRectangle(cornerRadius: 12)
+                .fill(Color(.systemGray6))
+        )
+    }
+    
+    private func dayOfMonth(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd"
+        return formatter.string(from: date)
+    }
+    
+    private func monthAbbreviation(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMM"
+        return formatter.string(from: date)
+    }
+    
+    private func eventTypeIcon(_ type: EventType) -> Image {
+        switch type {
+        case .anniversary:
+            return Image(systemName: "heart.fill")
+        case .date:
+            return Image(systemName: "fork.knife")
+        case .travel:
+            return Image(systemName: "airplane")
+        case .todo:
+            return Image(systemName: "checkmark.circle")
+        case .milestone:
+            return Image(systemName: "star.fill")
+        }
+    }
+    
+    private func eventTypeColor(_ type: EventType) -> Color {
+        switch type {
+        case .anniversary:
+            return .pink
+        case .date:
+            return .orange
+        case .travel:
+            return .blue
+        case .todo:
+            return .green
+        case .milestone:
+            return .purple
         }
     }
 }
