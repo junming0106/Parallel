@@ -19,7 +19,7 @@ enum EventType: String, CaseIterable, Codable {
 @Model
 final class CalendarEvent {
     var title: String
-    var description: String
+    var eventDescription: String
     var type: EventType
     var startDate: Date
     var endDate: Date?
@@ -34,7 +34,7 @@ final class CalendarEvent {
     
     init(title: String, description: String = "", type: EventType, startDate: Date, endDate: Date? = nil, isAllDay: Bool = false, isRecurring: Bool = false, createdBy: String, participantIDs: [String] = [], color: String = "blue", location: String? = nil) {
         self.title = title
-        self.description = description
+        self.eventDescription = description
         self.type = type
         self.startDate = startDate
         self.endDate = endDate

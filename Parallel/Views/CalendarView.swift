@@ -239,8 +239,8 @@ struct EventCard: View {
                         .font(.headline)
                         .foregroundColor(.primary)
                     
-                    if !event.description.isEmpty {
-                        Text(event.description)
+                    if !event.eventDescription.isEmpty {
+                        Text(event.eventDescription)
                             .font(.caption)
                             .foregroundColor(.secondary)
                             .lineLimit(2)
@@ -448,12 +448,12 @@ struct EventDetailView: View {
                     }
                     
                     // 描述
-                    if !event.description.isEmpty {
+                    if !event.eventDescription.isEmpty {
                         VStack(alignment: .leading, spacing: 8) {
                             Label("描述", systemImage: "text.alignleft")
                                 .font(.headline)
                             
-                            Text(event.description)
+                            Text(event.eventDescription)
                                 .font(.body)
                         }
                     }
