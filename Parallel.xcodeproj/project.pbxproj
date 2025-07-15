@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		26E2FD3F2E26A99C00461CC3 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26E2FD3E2E26A99C00461CC3 /* WidgetKit.framework */; };
+		26E2FD412E26A99C00461CC3 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26E2FD402E26A99C00461CC3 /* SwiftUI.framework */; };
+		26E2FD522E26A99D00461CC3 /* WidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 26E2FD3C2E26A99C00461CC3 /* WidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		26E2FD1B2E26A92900461CC3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -21,12 +27,36 @@
 			remoteGlobalIDString = 26E2FD082E26A92800461CC3;
 			remoteInfo = Parallel;
 		};
+		26E2FD502E26A99D00461CC3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 26E2FD012E26A92800461CC3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 26E2FD3B2E26A99C00461CC3;
+			remoteInfo = WidgetsExtension;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		26E2FD572E26A99D00461CC3 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				26E2FD522E26A99D00461CC3 /* WidgetsExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		26E2FD092E26A92800461CC3 /* Parallel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Parallel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26E2FD1A2E26A92900461CC3 /* ParallelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ParallelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		26E2FD242E26A92900461CC3 /* ParallelUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ParallelUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		26E2FD3C2E26A99C00461CC3 /* WidgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WidgetsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		26E2FD3E2E26A99C00461CC3 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		26E2FD402E26A99C00461CC3 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -36,6 +66,13 @@
 				Info.plist,
 			);
 			target = 26E2FD082E26A92800461CC3 /* Parallel */;
+		};
+		26E2FD562E26A99D00461CC3 /* Exceptions for "Widgets" folder in "WidgetsExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 26E2FD3B2E26A99C00461CC3 /* WidgetsExtension */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
@@ -56,6 +93,14 @@
 		26E2FD272E26A92900461CC3 /* ParallelUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = ParallelUITests;
+			sourceTree = "<group>";
+		};
+		26E2FD422E26A99C00461CC3 /* Widgets */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				26E2FD562E26A99D00461CC3 /* Exceptions for "Widgets" folder in "WidgetsExtension" target */,
+			);
+			path = Widgets;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -82,6 +127,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		26E2FD392E26A99C00461CC3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				26E2FD412E26A99C00461CC3 /* SwiftUI.framework in Frameworks */,
+				26E2FD3F2E26A99C00461CC3 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -91,6 +145,8 @@
 				26E2FD0B2E26A92800461CC3 /* Parallel */,
 				26E2FD1D2E26A92900461CC3 /* ParallelTests */,
 				26E2FD272E26A92900461CC3 /* ParallelUITests */,
+				26E2FD422E26A99C00461CC3 /* Widgets */,
+				26E2FD3D2E26A99C00461CC3 /* Frameworks */,
 				26E2FD0A2E26A92800461CC3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -101,8 +157,18 @@
 				26E2FD092E26A92800461CC3 /* Parallel.app */,
 				26E2FD1A2E26A92900461CC3 /* ParallelTests.xctest */,
 				26E2FD242E26A92900461CC3 /* ParallelUITests.xctest */,
+				26E2FD3C2E26A99C00461CC3 /* WidgetsExtension.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		26E2FD3D2E26A99C00461CC3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				26E2FD3E2E26A99C00461CC3 /* WidgetKit.framework */,
+				26E2FD402E26A99C00461CC3 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -115,10 +181,12 @@
 				26E2FD052E26A92800461CC3 /* Sources */,
 				26E2FD062E26A92800461CC3 /* Frameworks */,
 				26E2FD072E26A92800461CC3 /* Resources */,
+				26E2FD572E26A99D00461CC3 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				26E2FD512E26A99D00461CC3 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				26E2FD0B2E26A92800461CC3 /* Parallel */,
@@ -176,6 +244,28 @@
 			productReference = 26E2FD242E26A92900461CC3 /* ParallelUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		26E2FD3B2E26A99C00461CC3 /* WidgetsExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 26E2FD532E26A99D00461CC3 /* Build configuration list for PBXNativeTarget "WidgetsExtension" */;
+			buildPhases = (
+				26E2FD382E26A99C00461CC3 /* Sources */,
+				26E2FD392E26A99C00461CC3 /* Frameworks */,
+				26E2FD3A2E26A99C00461CC3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				26E2FD422E26A99C00461CC3 /* Widgets */,
+			);
+			name = WidgetsExtension;
+			packageProductDependencies = (
+			);
+			productName = WidgetsExtension;
+			productReference = 26E2FD3C2E26A99C00461CC3 /* WidgetsExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -197,6 +287,9 @@
 						CreatedOnToolsVersion = 16.4;
 						TestTargetID = 26E2FD082E26A92800461CC3;
 					};
+					26E2FD3B2E26A99C00461CC3 = {
+						CreatedOnToolsVersion = 16.4;
+					};
 				};
 			};
 			buildConfigurationList = 26E2FD042E26A92800461CC3 /* Build configuration list for PBXProject "Parallel" */;
@@ -216,6 +309,7 @@
 				26E2FD082E26A92800461CC3 /* Parallel */,
 				26E2FD192E26A92900461CC3 /* ParallelTests */,
 				26E2FD232E26A92900461CC3 /* ParallelUITests */,
+				26E2FD3B2E26A99C00461CC3 /* WidgetsExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -236,6 +330,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		26E2FD222E26A92900461CC3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		26E2FD3A2E26A99C00461CC3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -266,6 +367,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		26E2FD382E26A99C00461CC3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -278,6 +386,11 @@
 			isa = PBXTargetDependency;
 			target = 26E2FD082E26A92800461CC3 /* Parallel */;
 			targetProxy = 26E2FD252E26A92900461CC3 /* PBXContainerItemProxy */;
+		};
+		26E2FD512E26A99D00461CC3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 26E2FD3B2E26A99C00461CC3 /* WidgetsExtension */;
+			targetProxy = 26E2FD502E26A99D00461CC3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -558,6 +671,63 @@
 			};
 			name = Release;
 		};
+		26E2FD542E26A99D00461CC3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Widgets/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Widgets;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.junming.Parallel.Widgets;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		26E2FD552E26A99D00461CC3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Widgets/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Widgets;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.junming.Parallel.Widgets;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -593,6 +763,15 @@
 			buildConfigurations = (
 				26E2FD362E26A92900461CC3 /* Debug */,
 				26E2FD372E26A92900461CC3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		26E2FD532E26A99D00461CC3 /* Build configuration list for PBXNativeTarget "WidgetsExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				26E2FD542E26A99D00461CC3 /* Debug */,
+				26E2FD552E26A99D00461CC3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
