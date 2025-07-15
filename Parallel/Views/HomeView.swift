@@ -117,14 +117,14 @@ struct HomeView: View {
                             .font(.headline)
                             .frame(maxWidth: .infinity, alignment: .leading)
                         
-                        HStack(spacing: 16) {
+                        VStack(spacing: 12) {
                             // 想你按鈕
                             Button(action: sendMissYouMessage) {
-                                VStack {
+                                HStack {
                                     Image(systemName: "heart.fill")
-                                        .font(.system(size: 24))
+                                        .font(.system(size: 20))
                                     Text("想你")
-                                        .font(.caption)
+                                        .font(.headline)
                                         .fontWeight(.medium)
                                 }
                                 .foregroundColor(.white)
@@ -136,40 +136,42 @@ struct HomeView: View {
                                 )
                             }
                             
-                            // 寫日記按鈕
-                            Button(action: {}) {
-                                VStack {
-                                    Image(systemName: "book.fill")
-                                        .font(.system(size: 24))
-                                    Text("寫日記")
-                                        .font(.caption)
-                                        .fontWeight(.medium)
+                            HStack(spacing: 12) {
+                                // 寫日記按鈕
+                                Button(action: {}) {
+                                    HStack {
+                                        Image(systemName: "book.fill")
+                                            .font(.system(size: 18))
+                                        Text("寫日記")
+                                            .font(.subheadline)
+                                            .fontWeight(.medium)
+                                    }
+                                    .foregroundColor(.white)
+                                    .frame(maxWidth: .infinity)
+                                    .padding(.vertical, 12)
+                                    .background(
+                                        RoundedRectangle(cornerRadius: 10)
+                                            .fill(Color.blue)
+                                    )
                                 }
-                                .foregroundColor(.white)
-                                .frame(maxWidth: .infinity)
-                                .padding()
-                                .background(
-                                    RoundedRectangle(cornerRadius: 12)
-                                        .fill(Color.blue)
-                                )
-                            }
-                            
-                            // 添加活動按鈕
-                            Button(action: {}) {
-                                VStack {
-                                    Image(systemName: "plus.circle.fill")
-                                        .font(.system(size: 24))
-                                    Text("添加活動")
-                                        .font(.caption)
-                                        .fontWeight(.medium)
+                                
+                                // 添加活動按鈕
+                                Button(action: {}) {
+                                    HStack {
+                                        Image(systemName: "plus.circle.fill")
+                                            .font(.system(size: 18))
+                                        Text("添加活動")
+                                            .font(.subheadline)
+                                            .fontWeight(.medium)
+                                    }
+                                    .foregroundColor(.white)
+                                    .frame(maxWidth: .infinity)
+                                    .padding(.vertical, 12)
+                                    .background(
+                                        RoundedRectangle(cornerRadius: 10)
+                                            .fill(Color.green)
+                                    )
                                 }
-                                .foregroundColor(.white)
-                                .frame(maxWidth: .infinity)
-                                .padding()
-                                .background(
-                                    RoundedRectangle(cornerRadius: 12)
-                                        .fill(Color.green)
-                                )
                             }
                         }
                     }

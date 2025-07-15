@@ -2,16 +2,7 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>UIBackgroundModes</key>
-	<array>
-		<string>remote-notification</string>
-		<string>location</string>
-	</array>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>心連心需要位置權限來與您的伴侶分享位置，讓彼此更安心。</string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>心連心需要位置權限來提供即時位置分享和到達/離開通知功能。</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>心連心需要位置權限來在背景模式下提供位置分享功能。</string>
 </dict>
 </plist>

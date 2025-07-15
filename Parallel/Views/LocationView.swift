@@ -45,7 +45,7 @@ struct LocationView: View {
                             Text("電量: \(Int(batteryLevel * 100))%")
                                 .font(.caption)
                             Spacer()
-                            Text("分享中...")
+                            Text("分享中 (僅限應用內)")
                                 .font(.caption)
                                 .foregroundColor(.green)
                         }
