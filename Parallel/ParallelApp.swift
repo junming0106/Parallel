@@ -12,7 +12,11 @@ import SwiftData
 struct ParallelApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            Item.self,
+            User.self,
+            Message.self,
+            DiaryEntry.self,
+            CalendarEvent.self,
+            LocationShare.self,
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
@@ -25,7 +29,7 @@ struct ParallelApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainTabView()
         }
         .modelContainer(sharedModelContainer)
     }
