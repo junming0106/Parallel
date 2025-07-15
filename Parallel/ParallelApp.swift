@@ -29,8 +29,9 @@ struct ParallelApp: App {
 
     var body: some Scene {
         WindowGroup {
-            MainTabView()
+            ContentView()
         }
         .modelContainer(sharedModelContainer)
     }
 }
+

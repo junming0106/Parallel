@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MainTabView: View {
+    @Environment(\.modelContext) private var modelContext
     @State private var selectedTab = 0
     
     var body: some View {
@@ -50,6 +51,7 @@ struct MainTabView: View {
         .accentColor(.pink)
         .onAppear {
             selectedTab = 2 // 默認選中首頁
+            DemoDataService.shared.createDemoData(in: modelContext)
         }
     }
 }
