@@ -17,6 +17,7 @@ struct ParallelApp: App {
             DiaryEntry.self,
             CalendarEvent.self,
             LocationShare.self,
+            Item.self,
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 

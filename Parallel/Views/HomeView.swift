@@ -21,8 +21,11 @@ struct HomeView: View {
     }
     
     private var relationshipStartDate: Date {
-        // 這裡應該從用戶設定或首次配對日期獲取
-        Calendar.current.date(byAdding: .day, value: -100, to: Date()) ?? Date()
+        // 設定一個固定的開始日期作為演示
+        let calendar = Calendar.current
+        var components = calendar.dateComponents([.year, .month, .day], from: Date())
+        components.month = (components.month ?? 1) - 3 // 3個月前
+        return calendar.date(from: components) ?? Date()
     }
     
     private var daysTogether: Int {

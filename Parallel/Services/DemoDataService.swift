@@ -22,9 +22,16 @@ class DemoDataService {
             return // 已有數據，不重複創建
         }
         
-        // 創建用戶
+        // 創建用戶（使用固定的 UUID）
+        let currentUserID = UUID(uuidString: "11111111-1111-1111-1111-111111111111") ?? UUID()
+        let partnerUserID = UUID(uuidString: "22222222-2222-2222-2222-222222222222") ?? UUID()
+        
         let currentUser = User(name: "浚銘", email: "junming@parallel.app")
         let partnerUser = User(name: "親愛的", email: "partner@parallel.app")
+        
+        // 設定固定的 ID
+        currentUser.id = currentUserID
+        partnerUser.id = partnerUserID
         
         currentUser.isAuthenticated = true
         partnerUser.isAuthenticated = true

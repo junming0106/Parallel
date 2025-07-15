@@ -100,9 +100,9 @@ struct ChatView: View {
         let trimmedMessage = newMessage.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmedMessage.isEmpty else { return }
         
-        // 這裡應該獲取實際的用戶ID和對方ID
-        let currentUserID = UUID() // 暫時使用隨機UUID
-        let partnerID = UUID() // 暫時使用隨機UUID
+        // 使用固定的用戶ID進行演示
+        let currentUserID = UUID(uuidString: "11111111-1111-1111-1111-111111111111") ?? UUID()
+        let partnerID = UUID(uuidString: "22222222-2222-2222-2222-222222222222") ?? UUID()
         
         let message = Message(
             senderID: currentUserID,
@@ -119,8 +119,8 @@ struct ChatView: View {
     }
     
     private func sendMissYouMessage() {
-        let currentUserID = UUID() // 暫時使用隨機UUID
-        let partnerID = UUID() // 暫時使用隨機UUID
+        let currentUserID = UUID(uuidString: "11111111-1111-1111-1111-111111111111") ?? UUID()
+        let partnerID = UUID(uuidString: "22222222-2222-2222-2222-222222222222") ?? UUID()
         
         let message = Message(
             senderID: currentUserID,
@@ -143,7 +143,7 @@ struct ChatView: View {
 
 struct MessageBubble: View {
     let message: Message
-    private let currentUserID = UUID() // 暫時使用固定UUID
+    private let currentUserID = UUID(uuidString: "11111111-1111-1111-1111-111111111111") ?? UUID()
     
     private var isFromCurrentUser: Bool {
         message.senderID == currentUserID
